@@ -14,6 +14,8 @@
 		220DD7ED29C93212002D9487 /* BlockDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD7EC29C93212002D9487 /* BlockDemoTests.swift */; };
 		220DD7F729C93212002D9487 /* BlockDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD7F629C93212002D9487 /* BlockDemoUITests.swift */; };
 		220DD7F929C93212002D9487 /* BlockDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD7F829C93212002D9487 /* BlockDemoUITestsLaunchTests.swift */; };
+		220DD80729C9348D002D9487 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD80629C9348D002D9487 /* Employee.swift */; };
+		220DD80A29C93F97002D9487 /* EmployeeListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD80929C93F97002D9487 /* EmployeeListRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		220DD7F229C93212002D9487 /* BlockDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlockDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		220DD7F629C93212002D9487 /* BlockDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockDemoUITests.swift; sourceTree = "<group>"; };
 		220DD7F829C93212002D9487 /* BlockDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		220DD80629C9348D002D9487 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		220DD80929C93F97002D9487 /* EmployeeListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 		220DD7DA29C93210002D9487 /* BlockDemo */ = {
 			isa = PBXGroup;
 			children = (
+				220DD80829C93F77002D9487 /* UI */,
+				220DD80529C9347F002D9487 /* Model */,
 				220DD7DB29C93210002D9487 /* BlockDemoApp.swift */,
 				220DD7DD29C93210002D9487 /* ContentView.swift */,
 				220DD7DF29C93211002D9487 /* Assets.xcassets */,
@@ -125,6 +131,22 @@
 				220DD7F829C93212002D9487 /* BlockDemoUITestsLaunchTests.swift */,
 			);
 			path = BlockDemoUITests;
+			sourceTree = "<group>";
+		};
+		220DD80529C9347F002D9487 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				220DD80629C9348D002D9487 /* Employee.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		220DD80829C93F77002D9487 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				220DD80929C93F97002D9487 /* EmployeeListRow.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +279,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220DD80A29C93F97002D9487 /* EmployeeListRow.swift in Sources */,
 				220DD7DE29C93210002D9487 /* ContentView.swift in Sources */,
+				220DD80729C9348D002D9487 /* Employee.swift in Sources */,
 				220DD7DC29C93210002D9487 /* BlockDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
