@@ -16,6 +16,7 @@ class ContentViewModel: ObservableObject {
         self.networkService = networkService
     }
     
+    /// Uses `NetworkService` to make a call to the Block employee API.
     func fetchEmployees()  {
         Task {
             do {
@@ -23,8 +24,8 @@ class ContentViewModel: ObservableObject {
                 await MainActor.run {
                     self.employees = employees
                 }
-            } catch(let error) {
-                print("Error fetching employees: \(error)")
+            } catch(let error as NetworkError)  {
+                print("Error fetching employees: \(error.errorMessage)")
             }
         }
         

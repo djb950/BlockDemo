@@ -13,10 +13,16 @@ struct EmployeeListRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Circle()
-                    .foregroundColor(.purple)
-                    .frame(width: 50, height: 50)
-                    .shadow(radius: 0.4, x: 1, y: 1)
+                AsyncImage(url: employee.photoURLSmall) { image in
+                    image.resizable()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                } placeholder: {
+                    Image(systemName: "person.fill")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                }
+                .shadow(radius: 1, x: 0, y: 2)
                 VStack(alignment: .leading) {
                     Text(employee.name)
                         .font(.system(size: 14, weight: .bold))
@@ -34,12 +40,10 @@ struct EmployeeListRow: View {
                         Image(systemName: "phone")
                             .resizable()
                             .frame(width: 12, height: 12)
-                        Text(employee.phoneNumber)
+                        Text(employee.phoneNumber.toPhoneNumber())
                             .font(.system(size: 12, weight: .thin))
                     }
-                    
                     Spacer()
-                    
                 }
                 .padding(.leading, 2)
             }
@@ -52,27 +56,29 @@ struct EmployeeListRow: View {
                 )
                     )
             .foregroundColor(.gray)
-            HStack {
-                Spacer()
+            HStack(alignment: .center) {
                 VStack {
                     Text("Team")
                         .padding(.bottom, 1)
                         .font(.system(size: 12, weight: .bold))
                     Text(employee.team)
                         .font(.system(size: 10, weight: .thin))
+                        .multilineTextAlignment(.center)
                 }
-                Spacer()
+                .padding(.leading, 35)
+                .frame(maxWidth: .infinity)
                 Divider()
                     .padding([.top, .bottom], 5)
-                Spacer()
+                    .frame(maxWidth: .infinity)
                 VStack {
                     Text("Type")
                         .padding(.bottom, 1)
                         .font(.system(size: 12, weight: .bold))
-                    Text(employee.employeeType)
+                    Text(employee.employeeType.rowText)
                         .font(.system(size: 10, weight: .thin))
                 }
-                Spacer()
+                .padding(.trailing, 35)
+                .frame(maxWidth: .infinity)
             }
             .foregroundColor(.gray)
         }

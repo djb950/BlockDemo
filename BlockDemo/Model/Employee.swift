@@ -7,6 +7,23 @@
 
 import Foundation
 
+enum EmployeeType: String, Codable {
+    case fullTime = "FULL_TIME"
+    case partTime = "PART_TIME"
+    case contractor = "CONTRACTOR"
+    
+    var rowText: String {
+        switch self {
+        case .fullTime:
+            return "Full Time"
+        case .partTime:
+            return "Part Time"
+        case .contractor:
+            return "Contractor"
+        }
+    }
+}
+
 struct Employee: Hashable, Identifiable, Codable {
     var id: String
     
@@ -17,7 +34,7 @@ struct Employee: Hashable, Identifiable, Codable {
     var photoURLSmall: URL
     var photoURLLarge: URL
     var team: String
-    var employeeType: String
+    var employeeType: EmployeeType
     
     enum CodingKeys: String, CodingKey {
         case id = "uuid"

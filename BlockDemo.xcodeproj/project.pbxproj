@@ -18,6 +18,7 @@
 		220DD80A29C93F97002D9487 /* EmployeeListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD80929C93F97002D9487 /* EmployeeListRow.swift */; };
 		224B644F29C95E8C00F08EA3 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B644E29C95E8C00F08EA3 /* NetworkService.swift */; };
 		224B645129C9621D00F08EA3 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224B645029C9621D00F08EA3 /* ContentViewModel.swift */; };
+		22B5315C29CA26000019D6AA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5315B29CA26000019D6AA /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		220DD80929C93F97002D9487 /* EmployeeListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListRow.swift; sourceTree = "<group>"; };
 		224B644E29C95E8C00F08EA3 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		224B645029C9621D00F08EA3 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		22B5315B29CA26000019D6AA /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		220DD7DA29C93210002D9487 /* BlockDemo */ = {
 			isa = PBXGroup;
 			children = (
+				22B5315929CA25EB0019D6AA /* Helpers */,
 				224B644D29C95E5700F08EA3 /* Networking */,
 				220DD80829C93F77002D9487 /* UI */,
 				220DD80529C9347F002D9487 /* Model */,
@@ -161,6 +164,22 @@
 				224B644E29C95E8C00F08EA3 /* NetworkService.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		22B5315929CA25EB0019D6AA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				22B5315A29CA25F30019D6AA /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		22B5315A29CA25F30019D6AA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				22B5315B29CA26000019D6AA /* StringExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +315,7 @@
 				224B644F29C95E8C00F08EA3 /* NetworkService.swift in Sources */,
 				220DD80A29C93F97002D9487 /* EmployeeListRow.swift in Sources */,
 				224B645129C9621D00F08EA3 /* ContentViewModel.swift in Sources */,
+				22B5315C29CA26000019D6AA /* StringExtensions.swift in Sources */,
 				220DD7DE29C93210002D9487 /* ContentView.swift in Sources */,
 				220DD80729C9348D002D9487 /* Employee.swift in Sources */,
 				220DD7DC29C93210002D9487 /* BlockDemoApp.swift in Sources */,
