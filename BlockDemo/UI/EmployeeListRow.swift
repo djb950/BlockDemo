@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct EmployeeListRow: View {
-    // photo
-    // name
-    // team
     var employee: Employee
     
     var body: some View {
