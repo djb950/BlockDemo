@@ -11,7 +11,7 @@ struct EmployeeListRow: View {
     var employee: Employee
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
                 Circle()
                     .foregroundColor(.purple)
@@ -21,11 +21,23 @@ struct EmployeeListRow: View {
                     Text(employee.name)
                         .font(.system(size: 14, weight: .bold))
                         .padding(.bottom, 1)
-                    Text(employee.email)
-                        .padding(.bottom, 1)
-                        .font(.system(size: 12, weight: .thin))
-                    Text(employee.phoneNumber)
-                        .font(.system(size: 12, weight: .thin))
+                    HStack {
+                        Image(systemName: "envelope")
+                            .resizable()
+                            .frame(width: 12, height: 10)
+                        Text(employee.email)
+                            .padding(.bottom, 1)
+                            .font(.system(size: 12, weight: .thin))
+                    }
+                    
+                    HStack {
+                        Image(systemName: "phone")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                        Text(employee.phoneNumber)
+                            .font(.system(size: 12, weight: .thin))
+                    }
+                    
                     Spacer()
                     
                 }
@@ -35,7 +47,7 @@ struct EmployeeListRow: View {
                 EdgeInsets(
                     top: 15,
                     leading: 5,
-                    bottom: 15,
+                    bottom: 5,
                     trailing: 5
                 )
                     )
@@ -64,5 +76,6 @@ struct EmployeeListRow: View {
             }
             .foregroundColor(.gray)
         }
+        .padding(.bottom, 5)
     }
 }
