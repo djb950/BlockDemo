@@ -16,13 +16,18 @@ class ContentViewModel: ObservableObject {
         self.networkService = networkService
     }
     
-    func fetchEmployees() async {
-        do {
-            let employees = try await networkService.fetchEmployees()
-            self.employees = employees
-        } catch(let error) {
-            print("Error fetching employees: \(error)")
+    func fetchEmployees()  {
+        Task {
+            do {
+                let employees = try await networkService.fetchEmployees()
+                await MainActor.run {
+                    self.employees = employees
+                }
+            } catch(let error) {
+                print("Error fetching employees: \(error)")
+            }
         }
+        
 
     }
 }
