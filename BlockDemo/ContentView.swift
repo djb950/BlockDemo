@@ -47,41 +47,42 @@ struct ContentView: View {
         NavigationStack {
             List {
                 // If we have employees
-                if let employees = viewModel.employees, !employees.isEmpty {
-                    ForEach(employees.sorted(by: currentSortSelection.employeeSortKeyPath) , id: \.self) { employee in
-                        EmployeeListRow(employee: employee)
-                    }
-                    .onDelete { deletedEmployee in
-                        
-                    }
-                    .listRowBackground(
-                        RoundedRectangle(cornerRadius: 20)
-                            .shadow(radius: 0.2)
-                            .background(.clear)
-                            .foregroundColor(Colors.listRow)
-                            .padding(
-                                EdgeInsets(
-                                    top: 5,
-                                    leading: 10,
-                                    bottom: 5,
-                                    trailing: 10
-                                )
+                ForEach(viewModel.employees?.sorted(by: currentSortSelection.employeeSortKeyPath) ?? [] , id: \.self) { employee in
+                    EmployeeListRow(employee: employee)
+                }
+                .onDelete { deletedEmployee in
+                    
+                }
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 20)
+                        .shadow(radius: 0.2)
+                        .background(.clear)
+                        .foregroundColor(Colors.listRow)
+                        .padding(
+                            EdgeInsets(
+                                top: 5,
+                                leading: 10,
+                                bottom: 5,
+                                trailing: 10
                             )
-                    )
-                    .listRowSeparator(.hidden)
-                } else {
-                    // Empty State
-                    VStack {
+                        )
+                )
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color(UIColor.secondarySystemBackground))
+            }
+            .overlay(Group {
+                if viewModel.employees == nil {
+                    VStack(spacing: 25) {
                         Image(systemName: "person.3.fill")
                             .resizable()
-                            .frame(width: 100, height: 65)
+                            .frame(width: 100, height: 50)
                             .foregroundColor(.purple)
                             .shadow(radius: 1, x: 1, y: 1)
                         Text("No employees yet. Drag down to try again.")
                             .font(.system(size: 16, weight: .thin))
                     }
                 }
-            }
+            })
             .animation(.default, value: viewModel.employees)
             .refreshable {
                 viewModel.fetchEmployees()
@@ -115,15 +116,6 @@ struct ContentView: View {
                     }
                     .animation(nil, value: currentSortSelection)
                 }
-//                Button {
-//
-//                } label: {
-//                    Text("Name")
-//                        .font(.system(size: 14))
-//                    Image(systemName: "arrow.up.arrow.down")
-//                        .resizable()
-//                        .frame(width: 15, height: 15)
-//                }
             }
             .navigationTitle("Employees")
         }
