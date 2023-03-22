@@ -18,9 +18,10 @@ struct EmployeeListRow: View {
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
                 } placeholder: {
-                    Image(systemName: "person.fill")
+                    Image(systemName: "person.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
+                        .clipShape(Circle())
                 }
                 .shadow(radius: 1, x: 0, y: 2)
                 VStack(alignment: .leading) {
@@ -30,6 +31,7 @@ struct EmployeeListRow: View {
                     HStack {
                         Image(systemName: "envelope")
                             .resizable()
+                            .foregroundColor(.blue)
                             .frame(width: 12, height: 10)
                         Text(employee.email)
                             .padding(.bottom, 1)
@@ -39,6 +41,7 @@ struct EmployeeListRow: View {
                     HStack {
                         Image(systemName: "phone")
                             .resizable()
+                            .foregroundColor(.green)
                             .frame(width: 12, height: 12)
                         Text(employee.phoneNumber.toPhoneNumber())
                             .font(.system(size: 12, weight: .thin))

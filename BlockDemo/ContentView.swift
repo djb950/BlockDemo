@@ -7,8 +7,37 @@
 
 import SwiftUI
 
+enum SortSelection: CaseIterable {
+    case name
+    case team
+    case type
+    
+    var buttonTitle: String {
+        switch self {
+        case .name:
+            return "Name"
+        case .team:
+            return "Team"
+        case .type:
+            return "Type"
+        }
+    }
+    
+    var employeeSortKeyPath: KeyPath<Employee, String> {
+        switch self {
+        case .name:
+            return \Employee.name
+        case .team:
+            return \Employee.team
+        case .type:
+            return \Employee.employeeType.rowText
+        }
+    }
+}
+
 struct ContentView: View {
     @StateObject var viewModel: ContentViewModel
+    @State var currentSortSelection: SortSelection = .name
     
     init(networkService: NetworkProtocol) {
         _viewModel = StateObject(wrappedValue: ContentViewModel(networkService: networkService))
@@ -19,7 +48,7 @@ struct ContentView: View {
             List {
                 // If we have employees
                 if let employees = viewModel.employees, !employees.isEmpty {
-                    ForEach(employees, id: \.self) { employee in
+                    ForEach(employees.sorted(by: currentSortSelection.employeeSortKeyPath) , id: \.self) { employee in
                         EmployeeListRow(employee: employee)
                     }
                     .onDelete { deletedEmployee in
@@ -29,7 +58,7 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .shadow(radius: 0.2)
                             .background(.clear)
-                            .foregroundColor(.white)
+                            .foregroundColor(Colors.listRow)
                             .padding(
                                 EdgeInsets(
                                     top: 5,
@@ -60,8 +89,48 @@ struct ContentView: View {
             .task {
                 viewModel.fetchEmployees()
             }
+            .toolbar {
+                Menu {
+                    ForEach(SortSelection.allCases, id: \.self) { selectionType in
+                        Button {
+                            menuButtonPressed(action: selectionType)
+                        } label: {
+                            HStack {
+                                if currentSortSelection == selectionType {
+                                    Image(systemName: "checkmark")
+                                        .resizable()
+                                        .frame(width: 15, height: 15)
+                                }
+                                Text(selectionType.buttonTitle)
+                            }
+                        }
+                    }
+                } label: {
+                    HStack {
+                        Text(currentSortSelection.buttonTitle)
+                            .font(.system(size: 14))
+                        Image(systemName: "arrow.up.arrow.down")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                    }
+                    .animation(nil, value: currentSortSelection)
+                }
+//                Button {
+//
+//                } label: {
+//                    Text("Name")
+//                        .font(.system(size: 14))
+//                    Image(systemName: "arrow.up.arrow.down")
+//                        .resizable()
+//                        .frame(width: 15, height: 15)
+//                }
+            }
             .navigationTitle("Employees")
         }
+    }
+    
+    private func menuButtonPressed(action: SortSelection) {
+        currentSortSelection = action
     }
 }
 
