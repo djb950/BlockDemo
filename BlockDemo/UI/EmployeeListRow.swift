@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct EmployeeListRow: View {
     var employee: Employee
@@ -13,7 +14,7 @@ struct EmployeeListRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                AsyncImage(url: employee.photoURLSmall) { image in
+                CachedAsyncImage(url: employee.photoURLSmall) { image in
                     image.resizable()
                         .frame(width: 50, height: 50)
                         .clipShape(Circle())
