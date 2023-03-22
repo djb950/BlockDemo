@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case badRequest
+    case malformedData
     case emptyData
     case serverError
     case unknown
@@ -23,6 +24,8 @@ enum NetworkError: Error {
             return "Server error, please try again"
         case .unknown:
             return "An unknown error occurred, please try again."
+        case .malformedData:
+            return "Data returned is malformed"
         }
     }
 }
@@ -37,6 +40,8 @@ protocol NetworkProtocol {
 
 class NetworkService: NetworkProtocol {
     var url: URL = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees.json")!
+    var malformedDataURL = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json")!
+    var emptyDataURL = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json")!
     
     /// Asynchronously fetches employees from the Block demo API.
     /// - Returns: an array containing `Employee` objects.
@@ -48,8 +53,14 @@ class NetworkService: NetworkProtocol {
         if let response = response as? HTTPURLResponse {
             switch response.statusCode {
             case 200:
-                let results = try JSONDecoder().decode(EmployeesAPIResponse.self, from: data)
-                return results.employees
+                do {
+                    let results = try JSONDecoder().decode(EmployeesAPIResponse.self, from: data)
+                    return results.employees
+                } catch(let error) {
+                    print("Error decoding json: \(error)")
+                    throw NetworkError.malformedData
+                }
+                
             case 400...499:
                 throw NetworkError.badRequest
             case 500...599:

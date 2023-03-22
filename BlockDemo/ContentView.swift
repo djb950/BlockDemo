@@ -71,7 +71,7 @@ struct ContentView: View {
                 .listRowBackground(Color(UIColor.secondarySystemBackground))
             }
             .overlay(Group {
-                if viewModel.employees == nil {
+                if let employees = viewModel.employees, employees.isEmpty {
                     VStack(spacing: 25) {
                         Image(systemName: "person.3.fill")
                             .resizable()
