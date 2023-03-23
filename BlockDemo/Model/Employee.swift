@@ -39,7 +39,7 @@ struct Employee: Hashable, Identifiable, Codable {
     var team: String
     var employeeType: EmployeeType
     
-    // This init handles cases where data is malformed by providing a default value if one is not returned from the API
+    /// This init handles cases where data is malformed by providing a default value if one is not returned from the API
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
 //
