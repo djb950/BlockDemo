@@ -46,7 +46,6 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                // If we have employees
                 ForEach(viewModel.employees?.sorted(by: currentSortSelection.employeeSortKeyPath) ?? [] , id: \.self) { employee in
                     EmployeeListRow(employee: employee)
                 }

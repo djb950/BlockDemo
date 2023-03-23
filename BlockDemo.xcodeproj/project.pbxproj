@@ -115,7 +115,6 @@
 				220DD80829C93F77002D9487 /* UI */,
 				220DD80529C9347F002D9487 /* Model */,
 				220DD7DB29C93210002D9487 /* BlockDemoApp.swift */,
-				220DD7DD29C93210002D9487 /* ContentView.swift */,
 				224B645029C9621D00F08EA3 /* ContentViewModel.swift */,
 				220DD7DF29C93211002D9487 /* Assets.xcassets */,
 				220DD7E129C93211002D9487 /* Preview Content */,
@@ -159,6 +158,7 @@
 		220DD80829C93F77002D9487 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				220DD7DD29C93210002D9487 /* ContentView.swift */,
 				220DD80929C93F97002D9487 /* EmployeeListRow.swift */,
 			);
 			path = UI;
