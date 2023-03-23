@@ -24,6 +24,23 @@ enum NetworkError: Error, Comparable {
     }
 }
 
+enum TestURL {
+    case standard
+    case malformedData
+    case emptyData
+    
+    var url: URL {
+        switch self {
+        case .standard:
+            return URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees.json")!
+        case .malformedData:
+            return URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json")!
+        case .emptyData:
+            return URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json")!
+        }
+    }
+}
+
 struct EmployeesAPIResponse: Codable {
     var employees: [Employee]
 }
@@ -33,15 +50,11 @@ protocol NetworkProtocol {
 }
 
 class NetworkService: NetworkProtocol {
-    var url: URL = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees.json")!
-    var malformedDataURL = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json")!
-    var emptyDataURL = URL(string: "https://s3.amazonaws.com/sq-mobile-interview/employees_empty.json")!
-    
     /// Asynchronously fetches employees from the Block demo API.
     /// - Returns: an array containing `Employee` objects.
     /// - Throws: `NetworkError` if request failed
     func fetchEmployees() async throws -> [Employee] {
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: TestURL.standard.url)
         request.httpMethod = "GET"
         let (data, response) = try await URLSession.shared.data(for: request)
         if let response = response as? HTTPURLResponse {
