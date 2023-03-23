@@ -7,10 +7,8 @@
 
 import Foundation
 
-enum NetworkError: Error {
+enum NetworkError: Error, Comparable {
     case badRequest
-    case malformedData
-    case emptyData
     case serverError
     case unknown
     
@@ -18,14 +16,10 @@ enum NetworkError: Error {
         switch self {
         case .badRequest:
             return "There was an error with your request, please try again"
-        case .emptyData:
-            return "No data returned for request"
         case .serverError:
             return "Server error, please try again"
         case .unknown:
             return "An unknown error occurred, please try again."
-        case .malformedData:
-            return "Data returned is malformed"
         }
     }
 }
@@ -56,11 +50,10 @@ class NetworkService: NetworkProtocol {
                 do {
                     let results = try JSONDecoder().decode(EmployeesAPIResponse.self, from: data)
                     return results.employees
-                } catch(let error) {
-                    print("Error decoding json: \(error)")
-                    throw NetworkError.malformedData
+                } catch {
+                    // if data is malformed, invalidate entire list of employees
+                    return []
                 }
-                
             case 400...499:
                 throw NetworkError.badRequest
             case 500...599:
