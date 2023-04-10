@@ -1,5 +1,8 @@
 # BlockDemo
 
+This is a demo app created for a technical assessment for an iOS job at Block/Square. The task was to consume an api of employees and create an employee directory application that displays a list of the fetched employees. 
+
+
 ## Build tools & versions used
 Xcode 14.2, iOS Simulator, iPhone 14 Pro Max, iOS 16.2
 
